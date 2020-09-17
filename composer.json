@@ -1,0 +1,41 @@
+{
+    "name": "ilaravelpro/ilogs",
+    "description": "iLaravel iLogs",
+    "keywords": [
+        "laravel",
+        "log",
+        "reports"
+    ],
+    "homepage": "https://ilaravel.iamir.net/packages/ilogs",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "iamirnet",
+            "email": "me@iamir.net",
+            "homepage": "https://iamir.net",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/app/",
+            "iLaravel\\iLogs\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "iLaravel\\iLogs\\Providers\\AppServiceProvider",
+                "iLaravel\\iLogs\\Providers\\RouteServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "ua-parser/uap-php": "^3.9"
+    }
+}
