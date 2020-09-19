@@ -1,5 +1,12 @@
 <?php
 
+
+/**
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 9/17/20, 7:13 PM
+ * Copyright (c) 2020. Powered by iamir.net
+ */
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,6 +26,7 @@ class CreateILogsTable extends Migration
             $table->bigInteger('type_id')->nullable();
             $table->string('model')->nullable();
             $table->bigInteger('model_id')->nullable();
+            $table->string('action')->nullable();
             $table->string('endpoint', 250)->index();
             $table->string('method', 10);
             $table->mediumText('request');

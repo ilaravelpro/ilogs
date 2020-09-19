@@ -1,5 +1,12 @@
 <?php
 
+
+/**
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 9/17/20, 8:58 PM
+ * Copyright (c) 2020. Powered by iamir.net
+ */
+
 namespace iLaravel\iLogs\iApp\Http\Middleware;
 
 use Closure;
@@ -20,6 +27,7 @@ class iResponse
         $log->type = 'User';
         $log->type_id = auth()->id();
         $log->model = isset($request->route()->controller) ? class_name($request->route()->getController()->model) : null;
+        $log->action = isset($request->route()->action['as']) ? $request->route()->action['as'] : null;
         $log->endpoint = $request->url();
         $log->method = $request->method();
         $log->request = count($request->toArray()) ? $request->toArray() : null;
