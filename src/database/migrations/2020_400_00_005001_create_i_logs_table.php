@@ -33,6 +33,7 @@ class CreateILogsTable extends Migration
             $table->mediumText('header_request');
             $table->mediumText('response');
             $table->mediumText('header_response');
+            $table->string('ip')->nullable();
             $table->bigInteger('agent_id')->unsigned();
             $table->foreign('agent_id')->references('id')->on('i_log_agents')->onDelete('cascade');
             $table->double('execute_time', 10, 3)->integer();

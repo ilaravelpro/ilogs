@@ -29,6 +29,7 @@ class iResponse
         $log->model = isset($request->route()->controller) ? class_name($request->route()->getController()->model) : null;
         $log->action = isset($request->route()->action['as']) ? $request->route()->action['as'] : null;
         $log->endpoint = $request->url();
+        $log->_ip = $request->ip();
         $log->method = $request->method();
         $log->request = count($request->toArray()) ? $request->toArray() : null;
         $log->response = $response->getContent();
