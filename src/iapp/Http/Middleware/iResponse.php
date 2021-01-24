@@ -22,7 +22,7 @@ class iResponse
 
     public function terminate($request, $response)
     {
-        $log = imodal('iLog');
+        $log = imodal('ILog');
         $log = new $log;
         $log->type = 'User';
         $log->type_id = auth()->id();
