@@ -31,7 +31,7 @@ class iResponse
         $log->endpoint = $request->url();
         $log->_ip = $request->ip();
         $log->method = $request->method();
-        $log->request = count($request->toArray()) ? $request->toArray() : null;
+        $log->request = count($request->toArray()) ? $request->toArray() : [];
         $log->response = $response->getContent();
         $log->execute_time = microtime(true) - LARAVEL_START;
         $header_request = $request->headers->all();
