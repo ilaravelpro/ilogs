@@ -22,6 +22,5 @@ class ILogController extends Controller
         Show,
         iLog\Rules,
         iLog\RequestData,
-        iLog\Filters,
-        iLog\SearchQ;
+        iLog\Filters;
 }

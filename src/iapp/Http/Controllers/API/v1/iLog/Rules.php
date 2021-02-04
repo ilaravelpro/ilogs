@@ -24,8 +24,6 @@ trait Rules
                 ];
                 break;
         }
-        $unique = $request->has('unique') ? $request->unique : $unique;
-        if ($unique) return str_replace(['required'], ['nullable'], _get_value($rules, $unique, 'nullable|string'));
         return $rules;
     }
 }
