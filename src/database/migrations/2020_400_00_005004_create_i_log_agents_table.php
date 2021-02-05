@@ -3,8 +3,8 @@
 
 /**
  * Author: Amir Hossein Jahani | iAmir.net
- * Last modified: 9/17/20, 5:59 PM
- * Copyright (c) 2020. Powered by iamir.net
+ * Last modified: 1/27/21, 1:00 PM
+ * Copyright (c) 2021. Powered by iamir.net
  */
 
 use Illuminate\Database\Migrations\Migration;
