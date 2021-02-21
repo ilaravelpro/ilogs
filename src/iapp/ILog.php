@@ -42,7 +42,7 @@ class ILog extends Model
                 $event->agent_id = $event->_agent->id;
             }
             unset($event->_agent);
-            if (isset($event->_ip) && $ipmodel = imodal('ILocationIp')) {
+            if (isset($event->_ip) && $ipmodel = imodal('LocationIp')) {
                 if (!($event->ip = $ipmodel::findByIP($event->_ip))){
                     $event->ip = $ipmodel::create(['ip' => $event->_ip]);
                 }
