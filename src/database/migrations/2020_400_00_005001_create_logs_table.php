@@ -20,7 +20,7 @@ class CreateLogsTable extends Migration
      */
     public function up()
     {
-        Schema::create('i_logs', function (Blueprint $table) {
+        Schema::create('logs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('type')->nullable();
             $table->bigInteger('type_id')->nullable();
@@ -35,7 +35,7 @@ class CreateLogsTable extends Migration
             $table->mediumText('header_response');
             $table->string('ip')->nullable();
             $table->bigInteger('agent_id')->unsigned();
-            $table->foreign('agent_id')->references('id')->on('i_log_agents')->onDelete('cascade');
+            $table->foreign('agent_id')->references('id')->on('log_agents')->onDelete('cascade');
             $table->double('execute_time', 10, 3)->integer();
             $table->timestamps();
         });
@@ -48,6 +48,6 @@ class CreateLogsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('i_logs');
+        Schema::dropIfExists('logs');
     }
 }

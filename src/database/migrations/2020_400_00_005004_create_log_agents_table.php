@@ -20,15 +20,15 @@ class CreateLogAgentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('i_log_agents', function (Blueprint $table) {
+        Schema::create('log_agents', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('title');
             $table->bigInteger('device_id')->unsigned();
-            $table->foreign('device_id')->references('id')->on('i_log_agent_devices')->onDelete('cascade');
+            $table->foreign('device_id')->references('id')->on('log_agent_devices')->onDelete('cascade');
             $table->bigInteger('platform_id')->unsigned();
-            $table->foreign('platform_id')->references('id')->on('i_log_agent_platforms')->onDelete('cascade');
+            $table->foreign('platform_id')->references('id')->on('log_agent_platforms')->onDelete('cascade');
             $table->bigInteger('browser_id')->unsigned();
-            $table->foreign('browser_id')->references('id')->on('i_log_agent_browsers')->onDelete('cascade');
+            $table->foreign('browser_id')->references('id')->on('log_agent_browsers')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -40,6 +40,6 @@ class CreateLogAgentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('i_log_agents');
+        Schema::dropIfExists('log_agents');
     }
 }

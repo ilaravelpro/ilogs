@@ -9,13 +9,8 @@
 
 namespace iLaravel\iLogs\iApp;
 
-use Illuminate\Database\Eloquent\Model;
-
-class ILog extends Model
+class Log extends \iLaravel\Core\iApp\Model
 {
-    use \iLaravel\Core\iApp\Modals\Modal;
-
-
     public static $s_prefix = 'ILLOG';
     public static $s_start = 1155;
     public static $s_end = 1733270554752;
@@ -53,7 +48,7 @@ class ILog extends Model
     }
 
     public function agent() {
-        return $this->belongsTo(imodal('ILogAgent'), 'agent_id');
+        return $this->belongsTo(imodal('LogAgent'), 'agent_id');
     }
 
     public function getResponseAttribute($value)

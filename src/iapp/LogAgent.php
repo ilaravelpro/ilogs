@@ -9,12 +9,9 @@
 
 namespace iLaravel\iLogs\iApp;
 
-use Illuminate\Database\Eloquent\Model;
 
-class ILogAgent extends Model
+class LogAgent extends \iLaravel\Core\iApp\Model
 {
-    use \iLaravel\Core\iApp\Modals\Modal;
-
     public static $s_prefix = 'ILLOGA';
     public static $s_start = 1155;
     public static $s_end = 1733270554752;
@@ -31,7 +28,7 @@ class ILogAgent extends Model
             foreach (['browser', 'device', 'platform'] as $item) {
                 if (isset($event->{"_$item"})) {
                     if (!($$item = $event->findByChild($item, (array)$event->{"_$item"}))) {
-                        $$item = imodal('ILogAgent' . ucfirst($item));
+                        $$item = imodal('LogAgent' . ucfirst($item));
                         $$item = new $$item((array)$event->{"_$item"});
                         $$item->save();
                     }
@@ -44,7 +41,7 @@ class ILogAgent extends Model
 
     public function findByChild($name, $data)
     {
-        $child = imodal('ILogAgent' . ucfirst($name));
+        $child = imodal('LogAgent' . ucfirst($name));
         foreach ($data as $index => $datum)
             $child = array_keys($data)[0] == $index ? $child::where($index, $datum) : $child->where($index, $datum);
         return $child->first();
@@ -57,16 +54,16 @@ class ILogAgent extends Model
 
     public function device()
     {
-        return $this->belongsTo(imodal('ILogAgentBrowser'), 'device_id');
+        return $this->belongsTo(imodal('LogAgentBrowser'), 'device_id');
     }
 
     public function platform()
     {
-        return $this->belongsTo(imodal('ILogAgentPlatform'), 'platform_id');
+        return $this->belongsTo(imodal('LogAgentPlatform'), 'platform_id');
     }
 
     public function browser()
     {
-        return $this->belongsTo(imodal('ILogAgentBrowser'), 'browser_id');
+        return $this->belongsTo(imodal('LogAgentBrowser'), 'browser_id');
     }
 }

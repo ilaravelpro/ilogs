@@ -20,7 +20,7 @@ class CreateLogAgentBrowsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('i_log_agent_browsers', function (Blueprint $table) {
+        Schema::create('log_agent_browsers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('family', 50);
             $table->string('major', 20)->nullable();
@@ -37,6 +37,6 @@ class CreateLogAgentBrowsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('i_log_agent_browsers');
+        Schema::dropIfExists('log_agent_browsers');
     }
 }

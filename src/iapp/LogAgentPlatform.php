@@ -9,13 +9,9 @@
 
 namespace iLaravel\iLogs\iApp;
 
-use Illuminate\Database\Eloquent\Model;
-
-class ILogAgentDevice extends Model
+class LogAgentPlatform extends \iLaravel\Core\iApp\Model
 {
-    use \iLaravel\Core\iApp\Modals\Modal;
-
-    public static $s_prefix = 'ILLOGAD';
+    public static $s_prefix = 'ILLOGAP';
     public static $s_start = 1155;
     public static $s_end = 1733270554752;
 

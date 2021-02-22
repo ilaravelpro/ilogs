@@ -20,7 +20,7 @@ class CreateLogAgentPlatformsTable extends Migration
      */
     public function up()
     {
-        Schema::create('i_log_agent_platforms', function (Blueprint $table) {
+        Schema::create('log_agent_platforms', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('family', 50);
             $table->string('major', 20)->nullable();
@@ -38,6 +38,6 @@ class CreateLogAgentPlatformsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('i_log_agent_platforms');
+        Schema::dropIfExists('log_agent_platforms');
     }
 }

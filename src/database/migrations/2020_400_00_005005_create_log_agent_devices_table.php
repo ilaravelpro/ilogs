@@ -20,7 +20,7 @@ class CreateLogAgentDevicesTable extends Migration
      */
     public function up()
     {
-        Schema::create('i_log_agent_devices', function (Blueprint $table) {
+        Schema::create('log_agent_devices', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('family', 100)->nullable();
             $table->string('brand', 100)->nullable();
@@ -36,6 +36,6 @@ class CreateLogAgentDevicesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('i_log_agent_devices');
+        Schema::dropIfExists('log_agent_devices');
     }
 }

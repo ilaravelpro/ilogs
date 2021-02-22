@@ -10,7 +10,7 @@
 return [
     'routes' => [
         'api' => [
-            'status' => true
+            'status' => false
         ]
     ],
     'database' => [
