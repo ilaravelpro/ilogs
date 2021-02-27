@@ -22,7 +22,7 @@ class iResponse
 
     public function terminate($request, $response)
     {
-        $log = imodal('ILog');
+        $log = imodal('Log');
         $log = new $log;
         $log->type = 'User';
         $log->type_id = auth()->id();
@@ -39,7 +39,7 @@ class iResponse
         $log->header_request = $header_request;
         $log->header_response = $response->headers->all();
         $agent = $request->headers->all()['user-agent'][0];
-        $log->_agent = imodal('ILogAgent');
+        $log->_agent = imodal('LogAgent');
         if ($i_agent = $log->_agent::findByAgent($agent)) {
             $log->_agent = $i_agent;
         }else{
