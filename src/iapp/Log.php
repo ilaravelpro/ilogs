@@ -21,17 +21,12 @@ class Log extends \iLaravel\Core\iApp\Model
     public $with = ['agent'];
 
     protected $casts = [
-        'request' => 'array',
-        'header_request' => 'array',
-        'header_response' => 'array',
+
     ];
 
     protected static function boot()
     {
         parent::boot();
-        parent::deleting(function (self $event) {
-            self::resetRecordsId();
-        });
         parent::saving(function (self $event) {
             if (isset($event->_agent)) {
                 $event->agent_id = $event->_agent->id;
@@ -49,6 +44,10 @@ class Log extends \iLaravel\Core\iApp\Model
 
     public function agent() {
         return $this->belongsTo(imodal('LogAgent'), 'agent_id');
+    }
+
+    public function responses() {
+        return $this->hasMany(imodal('LogResponse'), 'log_id');
     }
 
     public function getResponseAttribute($value)

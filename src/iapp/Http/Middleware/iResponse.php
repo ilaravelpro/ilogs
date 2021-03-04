@@ -31,13 +31,13 @@ class iResponse
         $log->endpoint = $request->url();
         $log->_ip = $request->ip();
         $log->method = $request->method();
-        $log->request = count($request->toArray()) ? $request->toArray() : [];
-        $log->response = $response->getContent();
+        $responses = [];
+        $responses['request'] = count($request->toArray()) ? $request->toArray() : [];
+        $responses['response'] = $response->getContent();
         $log->execute_time = microtime(true) - LARAVEL_START;
-        $header_request = $request->headers->all();
-        unset($header_request['user-agent']);
-        $log->header_request = $header_request;
-        $log->header_response = $response->headers->all();
+        $responses['header_request'] = $request->headers->all();
+        unset($responses['header_request']['user-agent']);
+        $responses['header_response'] = $response->headers->all();
         $agent = $request->headers->all()['user-agent'][0];
         $log->_agent = imodal('LogAgent');
         if ($i_agent = $log->_agent::findByAgent($agent)) {
@@ -53,5 +53,16 @@ class iResponse
             $log->_agent->save();
         }
         $log->save();
+        foreach ($responses as $index => $response) {
+            $split_response = str_split($index == 'response' ? $response : json_encode($response), 4294967000);
+            foreach ($split_response as $i => $split) {
+                if ((is_json($response) && strlen($response)) || (is_array($response) && count($response)))
+                    $log->responses()->create([
+                        'text' => $split,
+                        'type' => $index,
+                        'order' => $i,
+                    ]);
+            }
+        }
     }
 }

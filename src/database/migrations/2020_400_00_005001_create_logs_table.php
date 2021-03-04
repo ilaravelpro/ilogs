@@ -29,10 +29,6 @@ class CreateLogsTable extends Migration
             $table->string('action')->nullable();
             $table->string('endpoint', 250)->index();
             $table->string('method', 10);
-            $table->mediumText('request');
-            $table->mediumText('header_request');
-            $table->mediumText('response');
-            $table->mediumText('header_response');
             $table->string('ip')->nullable();
             $table->bigInteger('agent_id')->unsigned();
             $table->foreign('agent_id')->references('id')->on('log_agents')->onDelete('cascade');
