@@ -54,7 +54,7 @@ class iResponse
         }
         $log->save();
         foreach ($responses as $index => $response) {
-            $split_response = str_split($index == 'response' ? $response : json_encode($response), 4294967000);
+            $split_response = str_split(is_string($response) ? $response : json_encode($response), 129496);
             foreach ($split_response as $i => $split) {
                 if ((is_json($response) && strlen($response)) || (is_array($response) && count($response)))
                     $log->responses()->create([
