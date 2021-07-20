@@ -18,5 +18,13 @@ return [
             'include' => true
         ],
     ],
+    'excepts' => [
+        'actions' => [
+            'api.iauth.get',
+            'api.auth.rules',
+            'api.data.status',
+            'api.data.countries',
+        ]
+    ]
 ];
 ?>

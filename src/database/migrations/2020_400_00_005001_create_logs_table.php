@@ -30,6 +30,7 @@ class CreateLogsTable extends Migration
             $table->string('endpoint', 250)->index();
             $table->string('method', 10);
             $table->string('ip')->nullable();
+            $table->boolean('is_error')->default(0);
             $table->bigInteger('agent_id')->unsigned();
             $table->foreign('agent_id')->references('id')->on('log_agents')->onDelete('cascade');
             $table->double('execute_time', 10, 3)->integer();

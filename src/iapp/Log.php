@@ -21,7 +21,7 @@ class Log extends \iLaravel\Core\iApp\Model
     public $with = ['agent'];
 
     protected $casts = [
-
+        'is_error' => 'boolean'
     ];
 
     protected static function boot()
