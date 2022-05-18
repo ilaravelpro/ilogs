@@ -17,4 +17,9 @@ class LogAgentDevice extends \iLaravel\Core\iApp\Model
     public static $s_end = 1733270554752;
 
     protected $guarded = [];
+
+    public function getTextAttribute()
+    {
+        return trim($this->family . " " . implode(" - ", array_filter([$this->brand, $this->model], 'strlen')));
+    }
 }

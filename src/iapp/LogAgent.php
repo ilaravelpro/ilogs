@@ -54,7 +54,7 @@ class LogAgent extends \iLaravel\Core\iApp\Model
 
     public function device()
     {
-        return $this->belongsTo(imodal('LogAgentBrowser'), 'device_id');
+        return $this->belongsTo(imodal('LogAgentDevice'), 'device_id');
     }
 
     public function platform()
@@ -65,5 +65,15 @@ class LogAgent extends \iLaravel\Core\iApp\Model
     public function browser()
     {
         return $this->belongsTo(imodal('LogAgentBrowser'), 'browser_id');
+    }
+
+    public function getDecodeAttribute()
+    {
+        $data = [];
+        $data["device"] = $this->device->text;
+        $data["platform"] = $this->platform->text;
+        $data["browser"] = $this->browser->text;
+        $data["text"] = $this->title;
+        return $data;
     }
 }
