@@ -2,6 +2,7 @@
 
 namespace iLaravel\iLogs\Vendor;
 
+
 class Submit
 {
     public static function Log($request, $response, $is_error = false) {
@@ -12,7 +13,18 @@ class Submit
         $log = new $log;
         $log->type = 'User';
         $log->type_id = auth()->id();
-        $log->model = isset($request->route()->controller) ? class_name($request->route()->getController()->model) : null;
+        $model = $request->route() && isset($request->route()->controller) ? $request->route()->getController()->model : null;
+        $log->model = $model ? class_name($model) : null;
+        if ($model) {
+            $originalParameters = array_values($request->route()->originalParameters());
+            krsort($originalParameters);
+            if (method_exists($model, "id") && $originalParameters) {
+                foreach ($originalParameters as $originalParameter) {
+                    if ($model::id($originalParameter))
+                        $log->model_id = $model::id($originalParameter);
+                }
+            }
+        }
         $log->action = $action;
         $log->endpoint = $request->url();
         $log->_ip = _get_user_ip();
