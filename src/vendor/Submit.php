@@ -11,11 +11,13 @@ class Submit
             return false;
         $log = imodal('Log');
         $log = new $log;
-        $log->type = 'User';
-        $log->type_id = auth()->id();
-        $model = $request->route() && isset($request->route()->controller) ? $request->route()->getController()->model : null;
+        $log->type = $request->log_type?:'User';
+        $log->type_id = $request->log_type_id?:auth()->id();
+        $model = $request->log_model ? : ($request->route() && isset($request->route()->controller) ? $request->route()->getController()->model : null);
         $log->model = $model ? class_name($model) : null;
-        if ($model) {
+        if ($request->log_model_id)
+            $log->model_id = $request->log_model_id;
+        elseif ($model) {
             $originalParameters = array_values($request->route()->originalParameters());
             krsort($originalParameters);
             if (method_exists($model, "id") && $originalParameters) {
