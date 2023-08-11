@@ -39,7 +39,7 @@ class Submit
         $responses['header_request'] = $request->headers->all();
         unset($responses['header_request']['user-agent']);
         $responses['header_response'] = is_string($response) ? [] : $response->headers->all();
-        $agent = $request->headers->all()['user-agent'][0];
+        $agent = isset($request->headers->all()['user-agent'][0]) ? $request->headers->all()['user-agent'][0] : '';
         $log->_agent = imodal('LogAgent');
         if ($i_agent = $log->_agent::findByAgent($agent)) {
             $log->_agent = $i_agent;
