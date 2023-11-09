@@ -18,7 +18,7 @@ class AppServiceProvider extends ServiceProvider
         if ($this->app->request->is('api/*') || $this->app->request->ajax()) {
             $this->app->bind(
                 \Illuminate\Contracts\Debug\ExceptionHandler::class,
-                substr($this->app::VERSION, 0, 1) >= '7' ? \iLaravel\iLogs\iApp\Http\Exceptions\ExceptionHandler7::class : \iLaravel\iLogs\iApp\Http\Exceptions\ExceptionHandler::class
+                explode('.',$this->app::VERSION)[0] >= '7' ? \iLaravel\iLogs\iApp\Http\Exceptions\ExceptionHandler7::class : \iLaravel\iLogs\iApp\Http\Exceptions\ExceptionHandler::class
             );
         }
         $this->mergeConfigFrom(ilogs_path('config/ilogs.php'), 'ilaravel.main.ilogs');
