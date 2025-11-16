@@ -11,7 +11,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLogResponsesTable extends Migration
+class CreateLogAgentBrowsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -20,13 +20,12 @@ class CreateLogResponsesTable extends Migration
      */
     public function up()
     {
-        Schema::create('log_responses', function (Blueprint $table) {
+        Schema::smartCreate('log_agent_browsers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('log_id')->unsigned();
-            $table->foreign('log_id')->references('id')->on('logs')->onDelete('cascade');
-            $table->longText('text');
-            $table->string('type')->default('response');
-            $table->string('order')->nullable();
+            $table->string('family', 50);
+            $table->string('major', 20)->nullable();
+            $table->string('minor', 20)->nullable();
+            $table->string('patch', 20)->nullable();
             $table->timestamps();
         });
     }
@@ -38,6 +37,6 @@ class CreateLogResponsesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('log_responses');
+        Schema::dropIfExists('log_agent_browsers');
     }
 }

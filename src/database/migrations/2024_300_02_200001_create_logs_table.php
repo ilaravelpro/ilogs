@@ -20,19 +20,19 @@ class CreateLogsTable extends Migration
      */
     public function up()
     {
-        Schema::create('logs', function (Blueprint $table) {
+        Schema::smartCreate('logs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('type')->nullable();
             $table->bigInteger('type_id')->nullable();
             $table->string('model')->nullable();
             $table->bigInteger('model_id')->nullable();
             $table->string('action')->nullable();
-            $table->string('endpoint', 250)->index();
+            $table->string('endpoint', 250);
             $table->string('method', 10);
             $table->string('ip')->nullable();
             $table->boolean('is_error')->default(0);
             $table->bigInteger('agent_id')->unsigned();
-            $table->foreign('agent_id')->references('id')->on('log_agents')->onDelete('cascade');
+            $table->foreign('agent_id')->references('id')->on('log_agents')->noActionOnDelete();
             $table->double('execute_time', 10, 3);
             $table->timestamps();
         });

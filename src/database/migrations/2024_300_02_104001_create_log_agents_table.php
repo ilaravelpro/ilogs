@@ -20,15 +20,15 @@ class CreateLogAgentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('log_agents', function (Blueprint $table) {
+        Schema::smartCreate('log_agents', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('title');
             $table->bigInteger('device_id')->unsigned();
-            $table->foreign('device_id')->references('id')->on('log_agent_devices')->onDelete('cascade');
+            $table->foreign('device_id')->references('id')->on('log_agent_devices')->noActionOnDelete();
             $table->bigInteger('platform_id')->unsigned();
-            $table->foreign('platform_id')->references('id')->on('log_agent_platforms')->onDelete('cascade');
+            $table->foreign('platform_id')->references('id')->on('log_agent_platforms')->noActionOnDelete();
             $table->bigInteger('browser_id')->unsigned();
-            $table->foreign('browser_id')->references('id')->on('log_agent_browsers')->onDelete('cascade');
+            $table->foreign('browser_id')->references('id')->on('log_agent_browsers')->noActionOnDelete();
             $table->timestamps();
         });
     }

@@ -11,7 +11,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLogAgentPlatformsTable extends Migration
+class CreateLogResponsesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -20,13 +20,13 @@ class CreateLogAgentPlatformsTable extends Migration
      */
     public function up()
     {
-        Schema::create('log_agent_platforms', function (Blueprint $table) {
+        Schema::smartCreate('log_responses', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('family', 50);
-            $table->string('major', 20)->nullable();
-            $table->string('minor', 20)->nullable();
-            $table->string('patch', 20)->nullable();
-            $table->string('patchMinor', 100)->nullable();
+            $table->bigInteger('log_id')->unsigned();
+            $table->foreign('log_id')->references('id')->on('logs')->noActionOnDelete();
+            $table->longText('text');
+            $table->string('type')->default('response');
+            $table->string('order')->nullable();
             $table->timestamps();
         });
     }
@@ -38,6 +38,6 @@ class CreateLogAgentPlatformsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('log_agent_platforms');
+        Schema::dropIfExists('log_responses');
     }
 }
